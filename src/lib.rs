@@ -15,6 +15,8 @@ pub fn run(config: &Config) -> Result<String, Box<Error>> {
   let result = match &config.problem[..] {
     "1" => day_1::part_1(contents),
     "1.2" => day_1::part_2(contents),
+    "2" => day_2::part_1(contents),
+    "2.2" => day_2::part_2(contents),
      x =>  format!("Unknown problem {}", x),
   };
   Ok(result)
