@@ -3,18 +3,20 @@ use std::collections::HashSet;
 
 /// Count of passphrases with distinct words
 pub fn part_1(data: String) -> String {
-  let passphrases = data.lines()
-    .map(|line| line.split_whitespace());
-
-  passphrases.filter(|phrase| is_valid_part_1(phrase)).count().to_string()
+  data.lines()
+    .map(|line| line.split_whitespace())
+    .filter(|phrase| is_valid_part_1(phrase))
+    .count()
+    .to_string()
 }
 
 /// Count of passphrases with distinct sorted (anagram) words
 pub fn part_2(data: String) -> String {
-  let passphrases = data.lines()
-    .map(|line| line.split_whitespace());
-
-  passphrases.filter(|phrase| is_valid_part_2(phrase)).count().to_string()
+  data.lines()
+    .map(|line| line.split_whitespace())
+    .filter(|phrase| is_valid_part_2(phrase))
+    .count()
+    .to_string()
 }
 
 fn is_valid_part_1(words: &SplitWhitespace) -> bool {
