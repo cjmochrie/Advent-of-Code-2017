@@ -1,11 +1,10 @@
 use std::fs::File;
 use std::io::prelude::*;
 use std::error::Error;
-use std::env;
 
-fn day_1(_data: String) -> String {
-  String::from("foo")
-}
+mod utils;
+mod problems;
+use problems::*;
 
 pub fn run(config: &Config) -> Result<String, Box<Error>> {
   let mut f = File::open(&config.filename)?;
@@ -14,7 +13,8 @@ pub fn run(config: &Config) -> Result<String, Box<Error>> {
   f.read_to_string(&mut contents)?;
   
   let result = match &config.problem[..] {
-    "1" => day_1(contents),
+    "1" => day_1::part_1(contents),
+    "1.2" => day_1::part_2(contents),
      x =>  format!("Unknown problem {}", x),
   };
   Ok(result)
