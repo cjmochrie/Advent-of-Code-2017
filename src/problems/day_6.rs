@@ -1,13 +1,39 @@
 use std::collections::HashSet;
 
 pub fn part_1(data: String) -> String {
-  let banks: Vec<u32> = data
+  let banks: Vec<u32> = parse_banks(data);
+  count_cycles(banks).to_string()
+}
+
+pub fn part_2(data: String) -> String {
+  let banks = parse_banks(data);
+  count_infinite_repeat(banks).to_string()
+}
+
+fn parse_banks(data: String) -> Vec<u32> {
+  data
     .split_whitespace()
     .map(|num| num.parse::<u32>())
     .filter_map(Result::ok)
-    .collect();
+    .collect()
+}
 
-  count_cycles(banks).to_string()
+fn count_infinite_repeat(mut banks: Vec<u32>) -> u32 {
+  let length = banks.len();
+  let mut patterns: HashSet<Vec<u32>> = HashSet::new();
+  while patterns.insert(banks[..].to_owned()) {
+    redistribute(&mut banks, length);
+  }
+  let pattern = banks[..].to_owned();
+
+  redistribute(&mut banks, length);
+  let mut cycles = 1;  
+  
+  while pattern != banks[..].to_owned(){
+    redistribute(&mut banks, length);
+    cycles += 1;
+  }
+  cycles
 }
 
 fn count_cycles(mut banks: Vec<u32>) -> u32 {
