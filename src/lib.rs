@@ -2,6 +2,8 @@ use std::fs::File;
 use std::io::prelude::*;
 use std::error::Error;
 
+extern crate regex;
+
 mod utils;
 mod problems;
 use problems::*;
@@ -25,6 +27,8 @@ pub fn run(config: &Config) -> Result<String, Box<Error>> {
     "5.2" => day_5::part_2(contents),
     "6" => day_6::part_1(contents),
     "6.2" => day_6::part_2(contents),
+    "7" => day_7::part_1(contents),
+    "7.2" => day_7::part_2(contents),
      x =>  format!("Unknown problem {}", x),
   };
   Ok(result)
