@@ -35,6 +35,8 @@ pub fn run(config: &Config) -> Result<String, Box<Error>> {
     "9.2" => day_9::part_2(contents),
     "10" => day_10::part_1(contents),
     "10.2" => day_10::part_2(contents),
+    "11" => day_11::part_1(contents),
+    "11.2" => day_11::part_2(contents),
      x =>  format!("Unknown problem {}", x),
   };
   Ok(result)
